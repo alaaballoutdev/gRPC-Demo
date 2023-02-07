@@ -1,0 +1,60 @@
+﻿@page
+@using GrpcServer.Protos;
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<a href="/AddCustomer" class="btn btn-success text-white">Add</a>
+
+<div class="text-center">
+    <h2 class="mb-4">Customers List</h2>
+    
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Customer Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Age</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+
+
+        </thead>
+        <tbody>
+    @{
+        foreach (CustomerModel customer in Model.customerlist)
+        {
+            <tr>
+                <th scope="row">@customer.CustomerId</th>
+                <td>@customer.CustomerName</td>
+                <td>@customer.EmailAddress</td>
+                <td>@customer.Age</td>
+                <td>
+                    <a class="text-success text-decoration-none" href="AddSale/@customer.CustomerId">Add Sale</a>
+                </td>
+                
+                
+                
+                
+                <td>
+                    <a class="text-info text-decoration-none"href="ViewSales/@customer.CustomerId">ViewSales</a>
+                    </td>
+                <td>
+                    <a class="text-gray text-decoration-none" href="EditCustomer/@customer.CustomerId">Edit</a>
+                </td>
+                <td>
+                    <a class="text-danger text-decoration-none" href="DeleteCustomer/@customer.CustomerId">Delete</a>
+                </td>
+                
+            </tr>
+        }
+    }
+        </tbody>
+    </table>
+
+</div>

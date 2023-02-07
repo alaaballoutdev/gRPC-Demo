@@ -1,0 +1,40 @@
+﻿@page "{Id}"
+@using GrpcServer.Protos;
+@model GrpcClient.Pages.ViewSalesModel
+@{
+}
+
+<div class="text-center">
+    <h2>@Model.CustomerSalesResponse.CustomerName</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Item</th>
+                <th scope="col">Price</th>
+                <th scope="col">Sale Date</th>
+               
+            </tr>
+
+
+        </thead>
+        <tbody>
+            @{
+                foreach (SaleModel customer in Model.CustomerSalesResponse.CustomerSales)
+                    {
+                    <tr>
+                        <th scope="row">@customer.SaleId</th>
+                        <td>@customer.Item</td>
+                        <td>@customer.Price</td>
+                        <td>@customer.SaleDate</td>
+                        
+
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+
+
+</div>

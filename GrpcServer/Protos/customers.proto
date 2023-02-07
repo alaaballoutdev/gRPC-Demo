@@ -1,0 +1,86 @@
+syntax = "proto3";
+
+
+option csharp_namespace = "GrpcServer.Protos";
+
+
+
+
+// Customer Services
+service Customer{
+	// Get Customer info by id 
+	rpc GetCustomerInfo(CustomerLookUpModel)returns (CustomerModel);
+
+	rpc GetCustomers(Empty)returns(CustomerList);
+
+	rpc GetCustomerSales(CustomerLookUpModel)returns(CustomerSalesResponse);
+	
+	rpc GetSales(Empty)returns(SaleList);
+
+	rpc AddCustomer(CustomerModel)returns(Empty);
+	
+	rpc EditCustomer(CustomerModel)returns(Empty);
+
+	rpc DeleteCustomer(CustomerLookUpModel)returns(Empty);
+
+	rpc GetCustomerEmail(CustomerLookUpModel)returns(CustomerEmail);
+
+	rpc AddSale(SaleModel)returns(Empty);
+
+	rpc GetSaleInfo(SaleLookUp)returns(SaleModel);
+
+	rpc DeleteSale(SaleLookUp)returns(Empty);
+
+	rpc UpdateSale(SaleModel)returns(Empty);
+
+}	
+	
+	
+message  CustomerLookUpModel{
+	int32 customerId=1;
+}
+
+message CustomerList{
+	repeated CustomerModel customerModels=1;
+}
+
+
+message CustomerSalesResponse{
+	repeated SaleModel customerSales=1;
+	string customerName=2;
+}
+
+
+
+message CustomerModel{
+	int32 customerId=1;
+	string customerName=2;
+	string emailAddress=3;
+	int32 age=4;
+}
+
+message Empty{
+}
+
+
+message SaleList{
+	repeated SaleModel sales=1;
+}
+
+message SaleModel{
+	int32 saleId=1;
+	int32 customerId=2;
+	string item=3;
+	float price=4;
+	string saleDate=5;
+}
+
+message SaleLookUp{
+	int32 saleId=1;
+}
+
+
+
+message CustomerEmail{
+	string email=1;
+}
